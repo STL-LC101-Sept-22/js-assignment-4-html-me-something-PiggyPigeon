@@ -32,6 +32,9 @@ describe ("Grading Tests: ", function () {
    });
 
    it("HTML includes the correct number of certain elements", function() {
+
+      window.addEventListener("load", function() {
+         container = window.document;
          let pElements = container.body.getElementsByTagName("P").length;
          let headerElements = container.body.getElementsByTagName("Header").length;
          let footerElements = container.body.getElementsByTagName("Footer").length;
@@ -45,38 +48,57 @@ describe ("Grading Tests: ", function () {
          expect(mainElements).toBeGreaterThanOrEqual(1);
          expect(articleElements).toBeGreaterThanOrEqual(1);
          expect(imageElements).toBeGreaterThanOrEqual(1);
+      });
    })
 
    it("HTML contains correct number of sections", function() {
+      window.addEventListener("load", function() {
+         container = window.document;
       let childrenElements = container.body.children;
 
       expect(childrenElements.length).toBeGreaterThanOrEqual(3);
       expect(childrenElements.length).toBeLessThanOrEqual(10);
-   })
+   });
+})
 
    it("HTML includes external CSS script", function() {
+      window.addEventListener("load", function() {
+         container = window.document;
       let linkElement = container.getElementsByTagName("Link");
       expect(linkElement.item(0).href.includes('styles.css')).toBeTrue();
-   })
+   });
+})
 
    it("CSS body sets margin and display", function() {
+      window.addEventListener("load", function() {
+         container = window.document;
       expect(window.getComputedStyle(container.body).display).toEqual("block");
       expect(window.getComputedStyle(container.body).margin).toEqual("8px");
-   })
+   });
+})
 
    it("CSS funParagraph class is green", function() {
+      window.addEventListener("load", function() {
+         container = window.document;
       let funParagraphElement = container.getElementById("testP");
       expect(window.getComputedStyle(funParagraphElement).color).toEqual("green");
-   })
+   });
+})
 
    it("CSS mainHeading id is red", function() {
+      window.addEventListener("load", function() {
+         container = window.document;
       let headingElement = container.getElementById("mainHeading");
       expect(window.getComputedStyle(headingElement).color).toEqual("red");
-   })
+   });
+})
 
    it("HTML includes HTML entities", function() {
+      window.addEventListener("load", function() {
+         container = window.document;
       // Regex pattern: /(&.+;)/ig
       const regex = /(&.+;)/ig;
       expect(html.search(regex)).not.toEqual(-1);
-   })
+   });
+})
 });
